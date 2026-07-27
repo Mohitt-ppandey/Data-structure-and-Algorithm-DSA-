@@ -1,5 +1,6 @@
 class Solution {
     public int maxProduct(int[] nums) {
+        //fjfj
         int max = 0;
         int sec = 0;
         for(int ele : nums){
