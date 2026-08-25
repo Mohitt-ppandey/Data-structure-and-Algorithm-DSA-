@@ -7,16 +7,11 @@ class Solution {
             set.add(ele);
         }   
         if(k > max) return k; 
-        int ans = 0;
         int i = 1;
-        while(i<=max){
-            if(!set.contains(k*i)) {
-                ans = k*i;
-                break;
-            }  
+        while(k*i<=max){
+            if(!set.contains(k*i)) break; 
             i++;  
         }
-        if(ans == 0) return k*i;
-        return ans;
+        return k*i;
     }
 }
