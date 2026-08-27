@@ -10,19 +10,19 @@ class Solution {
             if (ch == '7' || ch == '9') map.get(ch).add(a++);
         }
         List<String> ans = new ArrayList<>();
-        StringBuilder sb = new StringBuilder();
-        helper(str ,  sb, map , ans , 0);
+        //StringBuilder sb = new StringBuilder();
+        helper(str ,  "" , map , ans , 0);
         return ans;
     }
 
-    public void helper(String str, StringBuilder s, HashMap<Character, List<Character>> map , List<String> ans , int idx) {
+    public void helper(String str, String s, HashMap<Character, List<Character>> map , List<String> ans , int idx) {
         if (idx == str.length()) {
-            ans.add(s.toString());
+            ans.add(s);
             return;
         }
         for (int i=0; i<map.get(str.charAt(idx)).size(); i++) {
-            helper(str, s.append(map.get(str.charAt(idx)).get(i)) , map, ans, idx + 1);
-            s.deleteCharAt(s.length()-1);
+            helper(str, s+map.get(str.charAt(idx)).get(i), map, ans, idx + 1);
+            //s.deleteCharAt(s.length()-1);
         }
     }
 }
