@@ -1,16 +1,25 @@
 class Solution {
-    static int[][] dp;
     public int uniquePathsWithObstacles(int[][] arr) {
         int m = arr.length , n = arr[0].length;
-        dp = new int[m][n];
-        for(int i=0; i<m; i++) Arrays.fill(dp[i] , -1);
-        return ways(arr , m-1 , n-1);
-    }
-    public int ways(int[][] arr , int i , int j){
-        if(i < 0 || j < 0) return 0;
-        if((arr[i][j] != 1) && i == 0 && j == 0) return 1;
-        if(arr[i][j] == 1) return 0;
-        if(dp[i][j] != -1) return dp[i][j];
-        return dp[i][j] = ways(arr , i-1 , j) + ways(arr , i , j-1);
+        int[][] dp = new int[m][n];
+        if(arr[0][0] == 1) return 0;
+        for(int i=0; i<m; i++) {
+            if(arr[i][0] == 0) dp[i][0] = 1;
+            else {
+                break;
+            }
+        }
+        for(int j=0; j<n; j++) {
+            if(arr[0][j] == 0) dp[0][j] = 1;
+            else {
+                break;
+            }
+        }
+        for(int i=1; i<m; i++){
+            for(int j=1; j<n; j++){
+                if(arr[i][j] != 1) dp[i][j] = dp[i-1][j] + dp[i][j-1];
+            }
+        }
+        return dp[m-1][n-1];
     }
 }
