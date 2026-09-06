@@ -2,12 +2,12 @@ class Solution {
     static int[][] dp;
     public int numDistinct(String s, String t) {
         int idx = 0;
-        for(int i=0; i<s.length(); i++) {
-            if(s.charAt(i) == t.charAt(0)){
-                idx = i;
-                break;
-            } 
-        }
+        // for(int i=0; i<s.length(); i++) {
+        //     if(s.charAt(i) == t.charAt(0)){
+        //         idx = i;
+        //         break;
+        //     } 
+        // }
         dp = new int[s.length()][t.length()];
         for(int i=0; i<s.length(); i++) Arrays.fill(dp[i] , -1);
         return ways(s , t , idx , 0);
