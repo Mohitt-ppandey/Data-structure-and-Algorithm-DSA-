@@ -3,7 +3,7 @@ class Solution {
     static int[][] dp;
     public int numberOfSets(int n, int k) {
         if((n-k) <=1) return 1;
-        if(k == 1) return (int)(n*(n-1)/2);
+        if(k == 1) return (n*(n-1)/2);
         dp = new int[n][k+1];
         for(int[] el : dp) Arrays.fill(el , -1);
         return fxn(0 , k , n);
