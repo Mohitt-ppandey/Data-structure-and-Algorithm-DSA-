@@ -4,14 +4,19 @@ class Solution {
         int m = s.length();
         if(m==1) return 1;
         dp = new int[m][m];
-        for(int[] ele : dp) Arrays.fill(ele,-1);
-        return LCS(s , 0 , m-1);
-    }
-    public int LCS(String a , int i , int j){
-        if(i > j) return 0;
-        if(dp[i][j] != -1) return dp[i][j];
-        if(i == j) return dp[i][j] = 1 + LCS(a , i+1 , j-1);
-        else if(a.charAt(i) == a.charAt(j)) return dp[i][j] = 2 + LCS(a , i+1 , j-1);
-        else return dp[i][j] = Math.max(LCS(a , i+1 , j) , LCS(a , i , j-1));
+        for(int i=0; i<m; i++) dp[i][i] = 1;
+        int i=0 , j = 1; 
+        while(j < m){
+            int k = j;
+            while(k < m){
+                if(s.charAt(i) == s.charAt(k)) dp[i][k] = 2 + dp[i+1][k-1];
+                else dp[i][k] = Math.max(dp[i+1][k] , dp[i][k-1]);
+                i++;
+                k++;
+            }
+            i = 0;
+            j++;
+        }
+        return dp[0][m-1];
     }
 }
