@@ -1,17 +1,16 @@
 class Solution {
-    static int[][] dp;
+    static int[] dp;
     public int lengthOfLIS(int[] arr) {
         int n = arr.length;
-        dp = new int[n][n+1];
-        for(int[] ele : dp) Arrays.fill(ele , -1);
-        return fxn(0 , -1 , arr);
-    }
-    public int fxn(int i , int preIdx , int[] arr){
-        if(i >= arr.length) return 0;
-        if(dp[i][preIdx+1] != -1) return dp[i][preIdx+1];
-        int pick = 0;
-        if(preIdx == -1 || arr[i] > arr[preIdx]) pick = 1 + fxn(i+1 , i , arr);
-        int skip = fxn(i+1 , preIdx , arr);
-        return dp[i][preIdx+1] = Math.max(pick , skip);
+        dp = new int[n];
+        dp[0] = 1;
+        int ans = 1;
+        for(int i=1; i<n; i++){
+            int max = 0;
+            for(int j=i-1; j>=0; j--) if(arr[i] > arr[j]) max = Math.max(max , dp[j]);
+            dp[i] = 1 + max;
+            ans = Math.max(ans , dp[i]);
+        }
+        return ans;
     }
 }
