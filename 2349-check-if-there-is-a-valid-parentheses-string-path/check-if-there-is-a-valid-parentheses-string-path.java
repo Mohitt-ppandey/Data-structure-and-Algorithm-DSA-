@@ -3,6 +3,7 @@ class Solution {
     public boolean hasValidPath(char[][] arr) {
         int m = arr.length , n = arr[0].length;
         if(arr[0][0] == ')' || arr[m-1][n-1] == '(') return false;
+        if((m+n-1)%2 != 0) return false;
         dp = new Boolean[m+1][n+1][m+n];
         return isValid(0 , 0 , 0 , arr);
     }
