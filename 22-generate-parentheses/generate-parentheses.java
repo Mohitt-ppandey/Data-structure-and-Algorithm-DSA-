@@ -4,12 +4,12 @@ class Solution {
         generate(ans , "" , 0 , 0 , n);
         return ans;
     }
-    public void generate(List<String> ans , String str , int lb , int rb , int n){
-        if(rb == n) {
+    public void generate(List<String> ans , String str , int open , int close , int n){
+        if(close == n) {
             ans.add(str);
             return;
         }
-        if(lb < n) generate(ans , str+"(" , lb+1 , rb , n);
-        if(rb < lb) generate(ans , str+")" , lb , rb+1 , n);
+        if(open < n) generate(ans , str+"(" , open+1 , close , n);
+        if(close < open) generate(ans , str+")" , open , close+1 , n);
     }
 }
