@@ -10,7 +10,6 @@ class Solution {
             else if(b >= c) b = c;
             else if(a < b && b < c) return true;
         }
-        if(a != Integer.MAX_VALUE &&  b != Integer.MAX_VALUE) if(a < b && b < c) return true;
         return false;
     }
 }
